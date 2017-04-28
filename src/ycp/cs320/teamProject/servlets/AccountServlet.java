@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet{
 			return;
 
 		}
-
+		
 		int UserNumber = (int) req.getSession().getAttribute("UserID");
 		model.setUserID(UserNumber);
 		String FirstName = (String) req.getSession().getAttribute("FirstName");
