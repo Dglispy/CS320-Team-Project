@@ -3,7 +3,7 @@ package ycp.cs320.teamProject.model;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 public class TrainingHistory {
-	private int UserID;
+	private User user;
 	
 	ArrayList<SOP> completedSOPs = new ArrayList<SOP>(); 
 	//BinaryHeap<SOP> sopsToComplete = new BinaryHeap<SOP>();
@@ -25,13 +25,12 @@ public class TrainingHistory {
 		return sopsToComplete.size() + completedSOPs.size();
 	}
 
-	
-	public int getUserID() {
-		return UserID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(int userID) {
-		UserID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	//possibly adding methods here to add and remove SOPs from their respective lists

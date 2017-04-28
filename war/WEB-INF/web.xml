@@ -70,7 +70,7 @@
     </servlet-mapping>
     
         <servlet-mapping>
-    	<servlet-name>createPositinoServlet</servlet-name>
+    	<servlet-name>createPositionServlet</servlet-name>
     	<url-pattern>createPosition</url-pattern>
     </servlet-mapping>
     

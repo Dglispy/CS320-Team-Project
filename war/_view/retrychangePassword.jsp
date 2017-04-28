@@ -3,6 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
+
+<title>Change Password</title>
+		<style type = "text/css">
+          body{
+           font-family: Verdan;
+          
+          background-color: lightblue
+          }
+          h1{
+          font-size: 40px;
+          }
+          h3{
+          font-size: 15px;
+          }
+        </style>
 <body>
 
 <form action="${pageContext.servletContext.contextPath}/User" method="post">

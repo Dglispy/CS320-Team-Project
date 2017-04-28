@@ -74,15 +74,15 @@ public class ModelTests {
 		 
 		 
 		 admin = new Position();
-		 admin.setPositionID(1025682);
+		 admin.setPositionIDS(1025682);
 		 admin.setPositionName("Administrator");
 		 
 		 regularUser = new Position();
-		 regularUser.setPositionID(1102597);
+		 regularUser.setPositionIDU(1102597);
 		 regularUser.setPositionName("User");
 		 
 		 Manager = new Position();
-		 Manager.setPositionID(1200349);
+		 Manager.setPositionIDU(1200349);
 		 Manager.setPositionName("Manager");
 		 
 		 
@@ -204,9 +204,9 @@ public class ModelTests {
 	 
 	 @Test
 	 public void testPositions() {
-		int positionID1 = Manager.getPositionID();
-		int positionID2 = regularUser.getPositionID();
-		int positionID3 = admin.getPositionID();
+		int positionID1 = Manager.getPositionIDS();
+		int positionID2 = regularUser.getPositionIDS();
+		int positionID3 = admin.getPositionIDS();
 		
 		assertEquals(1200349, positionID1);
 		assertEquals(1102597, positionID2);

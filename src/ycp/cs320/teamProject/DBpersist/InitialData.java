@@ -105,7 +105,8 @@ public class InitialData {
 				Iterator<String> i = tuple.iterator();
 				Position position = new Position();
 
-				position.setPositionID(positionId++);
+				position.setPositionIDS(positionId++);
+				position.setPositionIDU(position.getPositionIDS());
 				position.setPositionName(i.next());
 				position.setPositionDuty(i.next());
 

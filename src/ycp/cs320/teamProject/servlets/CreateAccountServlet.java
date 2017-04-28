@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ycp.cs320.teamProject.controllers.Projectcontroller;
 import ycp.cs320.teamProject.model.User;
@@ -19,6 +20,17 @@ public class CreateAccountServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		System.out.println("CreateAccountServlet: doGet");
+		HttpSession session = req.getSession();
+		System.out.println(session.getAttribute("username"));
+		if (session.getAttribute("username") == null) {
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/Login");
+			return;
+		}
+		if(session.getAttribute("type").equals("User")){
+			resp.sendRedirect(req.getContextPath() + "/MainPage");
+			
+		}
 		req.getRequestDispatcher("/_view/CreateAccount.jsp").forward(req, resp);
 	}	
 	@Override
@@ -28,16 +40,8 @@ public class CreateAccountServlet extends HttpServlet{
 		
 		//session data 
 		User model = new User();
-		String session = getSession(req, "seesionid");
-		model.setSessionid(session);
 		Projectcontroller controller = new Projectcontroller();
-		if (model.getSessionid()== null) {
-			// user is not logged in, or the session expired
-			resp.sendRedirect(req.getContextPath() + "/Login");
-			return;
-
-		}
-
+		
 		//I'm taking this out because the DB will assign a user number
 		//int UserNumber = (int) req.getSession().getAttribute("UserID");
 		//model.setUserID(UserNumber);

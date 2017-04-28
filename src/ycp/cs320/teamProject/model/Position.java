@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Position {
 
-	private int positionId;
+	private int positionIdS;
+	private int positionIdU;
 	private String positionName; 
 	private String positionDuty;
 	
@@ -25,13 +26,19 @@ public class Position {
 	public String getPositionName() {
 		return positionName;
 	}
-
-	public void setPositionID(int PositionId) {
-		this.positionId = PositionId;
+	public void setPositionIDS(int PositionId) {
+		this.positionIdS = PositionId;
 	}
 	
-	public int getPositionID() {
-		return positionId;
+	public int getPositionIDS() {
+		return positionIdS;
+	}
+	public void setPositionIDU(int PositionId) {
+		this.positionIdU = PositionId;
+	}
+	
+	public int getPositionIDU() {
+		return positionIdU;
 	}
 
 	public List<SOP> getRegulatingSOPs() {
@@ -62,7 +69,7 @@ public class Position {
 		ArrayList<SOP> sops = new ArrayList<SOP>();
 
 		for(int i = 0; i < regulatingSOPs.size(); i++) {
-			if(position.getPositionID() == regulatingSOPs.get(i).getPositionsAffected().get(i).getPositionID()) {
+			if(position.getPositionIDS() == regulatingSOPs.get(i).getPositionsAffected().get(i).getPositionIDS()) {
 				sops.add(regulatingSOPs.get(i));
 			}
 		}
@@ -77,5 +84,7 @@ public class Position {
 	public String getPositionDuty() {
 		return positionDuty;
 	}
+
+
 
 }

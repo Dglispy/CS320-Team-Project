@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -38,6 +42,16 @@
 	</head>
 	
 	<body>			
+	</php
+	$_SESSION["username"];
+	$_SESSION["userID"];
+	$_SESSION["firstName"];
+	$_SESSION["lastName"];
+	$_SESSION["type"];
+	$_SESSION["sessionid"];
+	$_SESSION["emailAddress"];
+	?>
+	
 		<c:if test="${! empty errorMessage }">
 			<div class = "error"> ${errorMessage}</div>
 		</c:if>

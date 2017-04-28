@@ -51,7 +51,8 @@ public class Projectcontroller {
 	
 	//Allowing a user to change their password 
 	public void changeUserPassword(String Username, String oldpassword, String newpassword)  {
-		 throw new UnsupportedOperationException();//useless exception is useless
+		 //throw new UnsupportedOperationException();//useless exception is useless
+		 db.changePassword(Username, oldpassword, newpassword);
 	}
 	//Allowing a user to change their username 
 	public void changeUsername(String Username, String newUsername, String password)  {

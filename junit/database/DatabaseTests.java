@@ -18,8 +18,10 @@ public class DatabaseTests {
 	
 	List<User> userList = null;
 	List<User> users = null;
-	List<SOP> sops = null;
+	//List<SOP> sops = null;
 	List<SOP> sopList = null;
+	List<Position> positionList = null;
+	//List<Position> positions = null;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -179,6 +181,11 @@ public class DatabaseTests {
 		users = db.DeleteUserFromDatabase(Username2, userPassword2);
 	}
 	
+	public void changePasswordTest() {
+		
+	}
+	
+	@Test
 	public void testAddSOP() {
 		int sopID = 10;
 		String sopName = "Electronic Signature";
@@ -192,7 +199,7 @@ public class DatabaseTests {
 			System.out.println("There are no SOPs in the table");
 			fail("Add more SOPs");
 		}else {
-			for(SOP s: sops) {
+			for(SOP s: sopList) {
 				System.out.println(s.getSopIdNumber() + ", " + s.getSopName() + ", " + s.getSopPurpose() + ", " + s.getPriority() + ", " + s.getRevision());
 			}
 		}
@@ -200,32 +207,122 @@ public class DatabaseTests {
 		
 	}
 	
+	@Test
 	public void testChanegSOPPriority() {
 		int sopID = 10;
 		String sopName = "Electronic Signature";
-		String authorID = "15";
+		String sopPurpose = "Know the impact of your signature";
 		String priority = "10";
 		String revision = "1";
 		
-		sopList = db.addSOP(sopID, sopName, authorID, priority, revision);
+		sopList = db.addSOP(sopID, sopName, sopPurpose, priority, revision);
 		
 		if(sopList.isEmpty()) {
 			System.out.println("There are no SOPs in the table");
 			fail("Add more SOPs");
+			
 		}else {
 			String newPriority = "9";
-			sopList = db.changePriority(sopID, priority, newPriority);
+			List<SOP> sops = new ArrayList<SOP>();
+			sops = db.changePriority(sopID, priority, newPriority);
 			
-			assertEquals("9", sopList.get(0).getPriority());
+			assertEquals("9", sops.get(0).getPriority());
+			
+			
 		}
 		
 	}
 	
+	@Test
 	public void testChangeSOPVersion() {
+		
+		int sopID = 20;
+		String sopName = "Electronic Signature 2";
+		String sopPurpose = "Know the impact of your signature, new and better";
+		String priority = "10";
+		String version = "1";
+		
+		sopList = db.addSOP(sopID, sopName, sopPurpose, priority, version);
+		
+		if(sopList.isEmpty()) {
+			System.out.println("There are no SOPs in the table");
+			fail("Add more SOPs");
+			//add a remove method for the SOPs
+		}
+		else {
+			String newVersion = "2";
+			List<SOP> sops = new ArrayList<SOP>();
+			sops = db.reviseSOP(sopID, version, newVersion);
+			
+			assertEquals("2", sops.get(0).getRevision());
+			//add a remove method for the SOPs
+		}
+	}
+	
+	//will add the @Test when the db is working 
+	public void  testaddPosition() {
+		
+		String positionName = "Dr Henry Killinger";
+		String positionDuty = "Lead investor";
+		
+		positionList = db.addPositionToDatabase(positionName, positionDuty);
+		
+		if(positionList.isEmpty()) {
+			System.out.println("Your positions are too scarce: no one will find me in here ");
+			fail("Add more positions you silly billy");
+		}
+		else {
+			for(Position p: positionList) {
+				System.out.println(p.getPositionIDS() + "," + p.getPositionName() + "," + p.getPositionDuty() + "," + p.getPositionIDU());
+			}
+		}
+	}
+	
+	//will add the @Test when the db is working 
+	public void testGetPositionFromID() {
+		int positionID = 1; 
+		
+		positionList = db.getPositionByID(positionID);
+		
+		if(positionList.isEmpty()) {
+			System.out.println("There are no positions in this table you silly billy");
+			fail("You must add more positions to test zis method");
+		}
+		else {
+			List<Position> positions = new ArrayList<Position>();
+			//return the found information that we wanted from the db
+			for(Position p : positionList) {
+				Position addpos = p;
+				positions.add(addpos);
+				System.out.println(p.getPositionIDS() + "," + p.getPositionName()+ "," + p.getPositionDuty()+ "," + p.getPositionIDU());
+			}
+		}
 		
 	}
 	
-	public void  testaddPosition() {
+	//will add the @Test when the db is working 
+	public void testGetPositionFromName() {
+		String positionName = "Intern";
+		
+		positionList = db.getPositionInfo(positionName);
+		
+		if(positionList.isEmpty()) {
+			System.out.println();
+			fail();
+		}
+		else {
+			List<Position> positions = new ArrayList<Position>();
+			//return the found information that we want from the db
+			for(Position p : positionList) {
+				Position addpos = p;
+				positions.add(addpos);
+				System.out.println(p.getPositionName() + "," + p.getPositionDuty());
+			}
+		}
+	}
+	
+	//need to add this method to the DB first 
+	public void testAddSOPtoPosition() {
 		
 	}
 
